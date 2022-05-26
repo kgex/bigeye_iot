@@ -14,7 +14,7 @@ def outentry(id, key):
     now = datetime.now() # current date and time
     data_out_time = {
             "id": int(id),
-            "out_time" :now.strftime("%Y-%m-%d %H:%M:%S")
+            "out_time" :now
         
     }
     response = requests.patch(url_update, headers=headers, json=data_out_time)
@@ -27,7 +27,7 @@ def inentry(key):
     now = datetime.now() # current date and time
     data_in_time = {
         "rfid_key": key,
-        "in_time" :now.strftime("%Y-%m-%d %H:%M:%S")
+        "in_time" :now
         }
     print("here", data_in_time)
     try:
