@@ -26,11 +26,9 @@ def inentry(key):
     print("inentry")
     now = datetime.now() # current date and time
     data_in_time = {
-        "attendance":{
-            "rfid_key": key,
-            "in_time" :now.strftime("%Y-%m-%d %H:%M:%S")
+        "rfid_key": key,
+        "in_time" :now.strftime("%Y-%m-%d %H:%M:%S")
         }
-    }
     print("here", data_in_time)
     try:
         response = requests.post(url_post, headers=headers, json=data_in_time)
