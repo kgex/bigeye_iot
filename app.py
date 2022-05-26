@@ -4,8 +4,8 @@ import json
 import time
 d =	{}
 
-url_post = "https://intent-sunbeam-40.hasura.app/api/rest/entry"
-url_update = "https://intent-sunbeam-40.hasura.app/api/rest/update_attendance"
+url_post = "https://kgxtest.herokuapp.com/attendance_in"
+url_update = "https://kgxtest.herokuapp.com/attendance_out"
 
 headers = {"Content-Type": "application/json; charset=utf-8", "x-hasura-admin-secret" : "4E9fBl6pQoyEL138Ov9jmoY3xnKtMpKm2KtrHWHPOUdcXzMHBzvII9CDooZZH5Ay"}
 
