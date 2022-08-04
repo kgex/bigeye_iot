@@ -7,10 +7,14 @@ import pickle
 d = {}
 
 # Open the file in binary mode
-with open("backup.pkl", "rb") as file:
+try:
+    with open("backup.pkl", "rb") as file:
     # Call load method to deserialze
-    d = pickle.load(file)
-    print(d)
+        d = pickle.load(file)
+        print(d)
+except Exception:
+    pass
+
 
 url_post = "https://bigbbe.herokuapp.com/attendance_in"
 url_update = "https://bigbbe.herokuapp.com/attendance_out"
@@ -26,6 +30,7 @@ def backup(d):
     with open("backup.pkl", "wb") as file:
         # A new file will be created
         pickle.dump(d, file)
+        file.close()
 
 
 def outentry(id, key):
