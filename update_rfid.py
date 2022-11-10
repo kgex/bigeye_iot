@@ -6,7 +6,7 @@ import pickle
  
 d = {}
 
-url_post="https://bigbbe.herokuapp.com/updaterfid"
+url_post="http://34.28.3.109:8080/updaterfid"
 headers = {
     "Content-Type": "application/json; charset=utf-8",
     "x-hasura-admin-secret": "4E9fBl6pQoyEL138Ov9jmoY3xnKtMpKm2KtrHWHPOUdcXzMHBzvII9CDooZZH5Ay",
@@ -17,7 +17,7 @@ def register(dict):
  
 
 while True:
+    rfid = input("Register your RFID Enabled Card")
     email = input("Enter your email: ")
-    rfid = input("Register your RFID Enabled Card") 
-    print(register({"email":email,"rfid_key":rfid}))
+    print(register({"rfid_key":rfid,"email":email}))
 
