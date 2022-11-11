@@ -3,35 +3,17 @@ import requests
 import json
 import time
 import pickle
-from tkinter import *
-import tkinter as tk
 
 d = {}
 
 # Open the file in binary mode
-try:
-    with open("backup.pkl", "rb") as file:
+with open("backup.pkl", "rb") as file:
     # Call load method to deserialze
-        d = pickle.load(file)
-        print(d)
-except Exception:
-    pass
+    d = pickle.load(file)
+    print(d)
 
-
-root = tk.Tk()
-root.title("KGX Attendance System")
-root.geometry("800x480")
-
-rfid_var=tk.StringVar()
-rfid_entry = tk.Entry(root,textvariable = rfid_var, font=('calibre',10,'normal'))
-rfid_entry.grid(row=0,column=0)
-rfid_entry.focus_set()
-
-lbl = Label(root, text="", font=("Arial", 25))
-lbl.grid()
-
-url_post = "https://bbapi.nivu.me/attendance_in"
-url_update = "https://bbapi.nivu.me/attendance_out"
+url_post = "https://bigbbe.herokuapp.com/attendance_in"
+url_update = "https://bigbbe.herokuapp.com/attendance_out"
 
 headers = {
     "Content-Type": "application/json; charset=utf-8",
@@ -44,7 +26,6 @@ def backup(d):
     with open("backup.pkl", "wb") as file:
         # A new file will be created
         pickle.dump(d, file)
-        file.close()
 
 
 def outentry(id, key):
@@ -55,9 +36,9 @@ def outentry(id, key):
     print(response.json())
     del d[key]
     print(d)
-    backup(d)   
-    lbl.config(text="Attendence OUT Successfull")
-    
+    backup(d)
+
+
 def inentry(key):
     print("inentry")
     now = datetime.now()  # current date and time
@@ -70,11 +51,10 @@ def inentry(key):
         d[key] = data["id"]
         print(d)
         backup(d)
-        lbl.config(text="Attendence IN Successfull")
-        
     except Exception as e:
         print(e)
-    
+
+
 def tap(key):
     print("keys", d.keys())
     if key in d.keys():
@@ -82,14 +62,7 @@ def tap(key):
     else:
         inentry(key)
 
-def enter(a):
-    print("enter")
-    key=rfid_var.get()
-    # key = entry.get()
-    print(key)
-    tap(key)
-    rfid_var.set("")
 
-root.bind('<Return>', enter)
-
-root.mainloop()
+while 1:
+    ip = input()
+    tap(ip)
