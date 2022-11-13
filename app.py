@@ -51,7 +51,7 @@ def outentry(id, key):
     print("outentry")
     now = datetime.now()  # current date and time
     data_out_time = {"id": int(id), "out_time": datetime.timestamp(now)}
-    response = requests.patch(url_update, headers=headers, json=data_out_time)
+    response = requests.patch(url_update, headers=headers, json=data_out_time, verify=False)
     print(response.json())
     del d[key]
     print(d)
@@ -64,13 +64,13 @@ def inentry(key):
     data_in_time = {"rfid_key": key, "in_time": datetime.timestamp(now)}
     print("here", data_in_time)
     try:
-        response = requests.post(url_post, headers=headers, json=data_in_time)
+        response = requests.post(url_post, headers=headers, json=data_in_time, verify=False)
         data = response.json()
         print(data)
         d[key] = data["id"]
         print(d)
         backup(d)
-        lbl.config(text="Attendence IN Successfull")
+        lbl.config(text="Attendence IN Successfull : " + str(data["name"]))
         
     except Exception as e:
         print(e)
