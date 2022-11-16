@@ -5,6 +5,7 @@ import time
 import pickle
 from tkinter import *
 import tkinter as tk
+from PIL import ImageTk, Image
 
 d = {}
 
@@ -22,13 +23,19 @@ root = tk.Tk()
 root.title("KGX Attendance System")
 root.geometry("800x480")
 
+# Create a photoimage object of the image in the path
+img = ImageTk.PhotoImage(Image.open("kgx.jpg"))
+panel = Label(root, image = img,width=50, height=50)
+panel.pack(side = "bottom",fill="both",expand = "yes")
+
 rfid_var=tk.StringVar()
-rfid_entry = tk.Entry(root,textvariable = rfid_var, font=('calibre',10,'normal'))
-rfid_entry.grid(row=0,column=0)
+rfid_entry = tk.Entry(root,textvariable = rfid_var,width=50, font=('calibre',10,'normal'))
+#rfid_entry.grid(row=0,column=0)
+rfid_entry.pack()
 rfid_entry.focus_set()
 
 lbl = Label(root, text="", font=("Arial", 25))
-lbl.grid()
+lbl.pack()
 
 url_post = "https://bbapi.nivu.me/attendance_in"
 url_update = "https://bbapi.nivu.me/attendance_out"
@@ -74,6 +81,7 @@ def inentry(key):
         
     except Exception as e:
         print(e)
+        lbl.config(text="Unregistered User, Please contact Admin !!")
     
 def tap(key):
     print("keys", d.keys())
