@@ -24,9 +24,9 @@ root.title("KGX Attendance System")
 root.geometry("800x480")
 
 # Create a photoimage object of the image in the path
-img = ImageTk.PhotoImage(Image.open("kgx.jpg"))
-panel = Label(root, image = img,width=50, height=50)
-panel.pack(side = "bottom",fill="both",expand = "yes")
+img = ImageTk.PhotoImage(Image.open("kgxlogo.png"))
+label = Label(root, image = img,width=50, height=50)
+label.pack(side = "bottom",fill="both",expand = "yes")
 
 rfid_var=tk.StringVar()
 rfid_entry = tk.Entry(root,textvariable = rfid_var,width=50, font=('calibre',10,'normal'))
