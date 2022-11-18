@@ -81,7 +81,7 @@ def inentry(key):
         
     except Exception as e:
         print(e)
-        lbl.config(text="Unregistered User, Please contact Admin !!")
+        lbl.config(text="Unregistered User, Please contact Admin !!" "\n RFID :" + key)
     
 def tap(key):
     print("keys", d.keys())
