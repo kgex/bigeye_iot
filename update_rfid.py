@@ -7,22 +7,29 @@ import pandas as pd
 
 d = {}
 dic = {}
-url_post = "http://34.28.3.109:80/updaterfid"
+url_post = "https://bbapi.nivu.me/updaterfid"
+
 headers = {
-    "Content-Type": "application/json; charset=utf-8",
-    "x-hasura-admin-secret": "4E9fBl6pQoyEL138Ov9jmoY3xnKtMpKm2KtrHWHPOUdcXzMHBzvII9CDooZZH5Ay",
+    "Content-Type": "application/json"
 }
 
-
 def register(dict):
-    return requests.patch(url_post, headers=headers, json=dict)
+    print(dict)
+    return requests.patch(url_post, json=dict, headers=headers, verify=False)
 
     # rfid = input("Register your RFID Enabled Card")
 
 
-data = pd.read_csv(r"/home/ramesh/Downloads/KGX Final RFID - October.csv")
-emails = data.loc[:, ["email", "rfid"]]
-for email, rfids in emails:
-    print(register({"rfid_key": rfids, "email": email}))
-
-    # email = input("Enter your email: ")
+data = pd.read_csv(r"C:\Users\Ramesh\Downloads\KGX Final RFID - Sheet11.csv")
+data = data.astype({'rfid': 'string'})
+print(type(data['rfid'][0]))
+data.dropna(inplace=True)
+# data = data.tail(1)
+data['rfid'] = data['rfid'].astype(str)
+data.reset_index()
+for index,row in data.iterrows():
+    email = row['email']
+    rfid = '0'* (10 - len(str(row['rfid']).split('.')[0])) + str(row['rfid']).split('.')[0]
+    print(rfid, email)
+    print(register({"rfid_key": rfid, "email": email}))
+    time.sleep(1)
