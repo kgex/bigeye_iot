@@ -12,8 +12,8 @@ with open("backup.pkl", "rb") as file:
     d = pickle.load(file)
     print(d)
 
-url_post = "https://bigbbe.herokuapp.com/attendance_in"
-url_update = "https://bigbbe.herokuapp.com/attendance_out"
+url_post = "https://web-production-c873.up.railway.app/attendance_in"
+url_update = "https://web-production-c873.up.railway.app/attendance_out"
 
 headers = {
     "Content-Type": "application/json; charset=utf-8",

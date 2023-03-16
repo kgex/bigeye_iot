@@ -37,8 +37,8 @@ rfid_entry.focus_set()
 lbl = Label(root, text="", font=("Arial", 25))
 lbl.pack()
 
-url_post = "https://bbapi.nivu.me/attendance_in"
-url_update = "https://bbapi.nivu.me/attendance_out"
+url_post = "https://web-production-c873.up.railway.app/attendance_in"
+url_update = "https://web-production-c873.up.railway.app/attendance_out"
 
 headers = {
     "Content-Type": "application/json; charset=utf-8",
